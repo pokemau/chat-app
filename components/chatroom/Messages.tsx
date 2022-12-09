@@ -34,7 +34,7 @@ const Messages = () => {
   };
 
   return (
-    <div>
+    <div className="h-[75vh] overflow-auto">
       <Chat />
     </div>
   );
