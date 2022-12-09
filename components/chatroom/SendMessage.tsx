@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent, KeyboardEvent } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -12,10 +12,7 @@ const SendMessage = () => {
     setCurrMessage(e.target.value);
   };
 
-  // send message
-  const sendMessage = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
+  const sendHolder = () => {
     if (currMessage) {
       // date
       const d = new Date();
@@ -39,6 +36,13 @@ const SendMessage = () => {
     }
   };
 
+  // send message
+  const sendMessage = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    sendHolder();
+  };
+
   // function to write to db
   const addMessageToDb = async (
     userMessage: string,
@@ -56,11 +60,17 @@ const SendMessage = () => {
     });
   };
 
+  const sendOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    // console.log(e);
+    if (e.code === "Enter") sendHolder();
+  };
+
   return (
     <div className="bg-green-300 py-4 px-2 flex items-center">
       <input
         value={currMessage}
         onChange={handleInputVal}
+        onKeyDown={sendOnEnter}
         className="flex items-center p-2 rounded w-[80%] focus:outline-none"
         type="text"
         placeholder="Message..."
