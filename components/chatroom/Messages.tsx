@@ -15,7 +15,7 @@ import Image from "next/image";
 
 const Messages = () => {
   const [latestDoc, setLatestDoc] = useState<null | any>(null);
-  const [chatsData, setChatsData] = useState<any>([]);
+  const [chatsData, setChatsData] = useState<any[]>([]);
 
   // const [value, loading, error] = useCollection(
   //   query(collection(db, "chats"), orderBy("timeStamp", "desc"), limit(10))
@@ -40,8 +40,9 @@ const Messages = () => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+      console.log(doc);
       const data = doc.data();
-      setChatsData((prevData: any[]) => [...prevData, { id: doc.id, data }]);
+      setChatsData((prevData) => [...prevData, { id: doc.id, data }]);
     });
 
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
