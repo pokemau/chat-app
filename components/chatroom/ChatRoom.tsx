@@ -14,7 +14,7 @@ const ChatRoom = () => {
 
       <Messages />
 
-      <SendMessage />
+      {/* <SendMessage /> */}
     </div>
   );
 };

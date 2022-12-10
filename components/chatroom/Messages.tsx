@@ -1,17 +1,11 @@
-import {
-  collection,
-  DocumentData,
-  limit,
-  orderBy,
-  query,
-} from "firebase/firestore";
+import { collection, limit, orderBy, query } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase/client";
 import Image from "next/image";
 
 const Messages = () => {
   const [value, loading, error] = useCollection(
-    query(collection(db, "chats"), orderBy("timeStamp"), limit(1))
+    query(collection(db, "chats"), orderBy("timeStamp", "desc"), limit(15))
   );
 
   const chats = value?.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
