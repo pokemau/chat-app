@@ -30,7 +30,7 @@ const Messages = () => {
     return (
       <>
         {chats?.map((chat) => (
-          <div key={chat.id} className="relative px-2 mb-2 break-all ">
+          <div key={chat.id} className="relative px-2 mb-2 break-words ">
             <Image
               className="rounded-full mr-2 absolute left-0 top-1"
               src={chat.data.userImg}

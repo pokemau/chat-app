@@ -67,7 +67,7 @@ const SendMessage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
+    <div className="flex items-center justify-center md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
       <input
         value={currMessage}
         onChange={handleInputVal}
