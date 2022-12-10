@@ -41,7 +41,7 @@ const Messages = () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const data = doc.data();
-      setChatsData((prevData: []) => [...prevData, { id: doc.id, data }]);
+      setChatsData((prevData: any[]) => [...prevData, { id: doc.id, data }]);
     });
 
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
