@@ -40,7 +40,7 @@ const Messages = () => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc);
+      // console.log(doc);
       const data = doc.data();
       setChatsData((prevData) => [...prevData, { id: doc.id, data }]);
     });
@@ -51,9 +51,9 @@ const Messages = () => {
   const getNextMessages = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // getMessages();
+    getMessages();
 
-    console.log(chatsData);
+    // console.log(chatsData);
   };
 
   // userMessage
@@ -63,7 +63,7 @@ const Messages = () => {
   const Chat = () => {
     return (
       <>
-        {chatsData?.map((chat) => (
+        {chatsData?.reverse().map((chat) => (
           <div key={chat.id} className="relative px-2 mb-2 break-words ">
             <Image
               className="rounded-full mr-2 absolute left-0 top-1"
