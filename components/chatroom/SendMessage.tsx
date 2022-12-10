@@ -13,7 +13,8 @@ const SendMessage = () => {
   };
 
   const sendHolder = () => {
-    if (currMessage) {
+    if (currMessage && currMessage.length <= 200) {
+      console.log(currMessage.length);
       // date
       const d = new Date();
       let mins: number | string = String(d.getMinutes()).padStart(2, "0");
@@ -36,11 +37,16 @@ const SendMessage = () => {
     }
   };
 
-  // send message
+  // send message with btn
   const sendMessage = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     sendHolder();
+  };
+  // send message with enter key
+  const sendOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    // console.log(e);
+    if (e.code === "Enter") sendHolder();
   };
 
   // function to write to db
@@ -58,11 +64,6 @@ const SendMessage = () => {
       userImg: userImg,
       timeSent: timeSent,
     });
-  };
-
-  const sendOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    // console.log(e);
-    if (e.code === "Enter") sendHolder();
   };
 
   return (

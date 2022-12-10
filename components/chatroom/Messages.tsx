@@ -18,15 +18,25 @@ const Messages = () => {
     return (
       <>
         {chats?.map((chat) => (
-          <div key={chat.id} className="px-2">
-            <div className="flex">
-              <Image src={chat.data.userImg} width={50} height={50} alt="nig" />
-              <h1>
-                {chat.data.userName} {chat.data.timeSent}
-              </h1>
-            </div>
+          <div key={chat.id} className="relative px-2 mb-2 break-all">
+            <Image
+              className="rounded-full mr-2 absolute left-0"
+              src={chat.data.userImg}
+              width={45}
+              height={45}
+              alt="nig"
+            />
 
-            <h1>{chat.data.userMessage}</h1>
+            <div className="ml-12">
+              <div className="flex">
+                <h1 className="font-bold">{chat.data.userName}</h1>
+                <span className="ml-2 text-[#adadad]">
+                  {chat.data.timeSent}
+                </span>
+              </div>
+
+              <h1>{chat.data.userMessage}</h1>
+            </div>
           </div>
         ))}
       </>
