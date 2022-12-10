@@ -71,12 +71,15 @@ const SendMessage = () => {
         value={currMessage}
         onChange={handleInputVal}
         onKeyDown={sendOnEnter}
-        className="flex p-2 items-center rounded w-[80%] focus:outline-none bg-[#ddd]"
+        className="flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#ddd]"
         type="text"
         placeholder="Message..."
       />
 
-      <button className="btn ml-2 w-[10%]" onClick={sendMessage} type="button">
+      <button
+        className="btn ml-2 py-[.8em] w-[10%]"
+        onClick={sendMessage}
+        type="button">
         Send
       </button>
     </div>
