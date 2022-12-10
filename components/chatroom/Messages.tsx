@@ -1,25 +1,58 @@
-import { collection, limit, orderBy, query } from "firebase/firestore";
-import { MouseEvent, useState } from "react";
+import {
+  collection,
+  getDocs,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  startAfter,
+  startAt,
+} from "firebase/firestore";
+import { MouseEvent, useEffect, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase/client";
 import Image from "next/image";
 
 const Messages = () => {
-  const [limitVal, setLimitVal] = useState(15);
-  const [value, loading, error] = useCollection(
-    query(
+  const [latestDoc, setLatestDoc] = useState<null | any>(null);
+  const [chatsData, setChatsData] = useState([]);
+
+  // const [value, loading, error] = useCollection(
+  //   query(collection(db, "chats"), orderBy("timeStamp", "desc"), limit(10))
+  // );
+
+  // const chats = value?.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
+  // chats?.reverse();
+
+  // get latest 10 messages on page load
+  useEffect(() => {
+    console.log("ran");
+    getMessages();
+  }, []);
+
+  const getMessages = async () => {
+    const q = query(
       collection(db, "chats"),
       orderBy("timeStamp", "desc"),
-      limit(limitVal)
-    )
-  );
+      startAfter(latestDoc || ""),
+      limit(10)
+    );
 
-  const chats = value?.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
-  chats?.reverse();
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      setChatsData((prevData) => [...prevData, { id: doc.id, data }]);
+    });
 
-  const getMoreMessages = (e: MouseEvent<HTMLButtonElement>) => {
+    setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+  };
+
+  const getNextMessages = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLimitVal(limitVal + 5);
+
+    // getMessages();
+
+    console.log(chatsData);
   };
 
   // userMessage
@@ -29,7 +62,7 @@ const Messages = () => {
   const Chat = () => {
     return (
       <>
-        {chats?.map((chat) => (
+        {chatsData?.map((chat) => (
           <div key={chat.id} className="relative px-2 mb-2 break-words ">
             <Image
               className="rounded-full mr-2 absolute left-0 top-1"
@@ -40,9 +73,9 @@ const Messages = () => {
             />
 
             <div className="ml-10">
-              <div className="flex">
+              <div className="flex items-center">
                 <h1 className="font-bold">{chat.data.userName}</h1>
-                <span className="ml-2 text-[#adadad]">
+                <span className=" ml-2 text-[#adadad] text-xs font-bold">
                   {chat.data.timeSent}
                 </span>
               </div>
@@ -59,7 +92,7 @@ const Messages = () => {
     <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
       <button
         className="underline mb-2 hover:text-[#165ac2]"
-        onClick={getMoreMessages}>
+        onClick={getNextMessages}>
         Show More Messages
       </button>
 
