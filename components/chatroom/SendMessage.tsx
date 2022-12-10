@@ -78,7 +78,7 @@ const SendMessage = () => {
       />
 
       <button
-        className="btn ml-2 py-[.8em] w-[10%]"
+        className="btn ml-2 py-[.8em] px-4 md:w-[15%]"
         onClick={sendMessage}
         type="button">
         Send
