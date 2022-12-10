@@ -15,7 +15,7 @@ import Image from "next/image";
 
 const Messages = () => {
   const [latestDoc, setLatestDoc] = useState<null | any>(null);
-  const [chatsData, setChatsData] = useState([]);
+  const [chatsData, setChatsData] = useState<any>([]);
 
   // const [value, loading, error] = useCollection(
   //   query(collection(db, "chats"), orderBy("timeStamp", "desc"), limit(10))
