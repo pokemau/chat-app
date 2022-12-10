@@ -66,17 +66,17 @@ const SendMessage = () => {
   };
 
   return (
-    <div className="bg-green-300 py-4 px-2 flex items-center">
+    <div className="flex items-center justify-center px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
       <input
         value={currMessage}
         onChange={handleInputVal}
         onKeyDown={sendOnEnter}
-        className="flex items-center p-2 rounded w-[80%] focus:outline-none"
+        className="flex p-2 items-center rounded w-[80%] focus:outline-none bg-[#ddd]"
         type="text"
         placeholder="Message..."
       />
 
-      <button className="btn" onClick={sendMessage} type="button">
+      <button className="btn ml-2 w-[10%]" onClick={sendMessage} type="button">
         Send
       </button>
     </div>

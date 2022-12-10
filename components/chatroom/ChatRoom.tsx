@@ -5,8 +5,8 @@ import SendMessage from "./SendMessage";
 
 const ChatRoom = () => {
   return (
-    <div className="w-[80vw] mx-auto bg-orange-300">
-      <nav className="flex px-4 py-3 items-center border-b-[1px] border-black">
+    <div className="w-[80vw] h-screen mx-auto ">
+      <nav className="flex h-[10%] px-4 items-center border-b-[1px] border-[#a7a7a7]">
         <h1 className="font-bold text-2xl">Welcome to Yahallo</h1>
 
         <Logout />

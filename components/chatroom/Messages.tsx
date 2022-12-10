@@ -18,7 +18,7 @@ const Messages = () => {
     return (
       <>
         {chats?.map((chat) => (
-          <div key={chat.id} className="border-b-2">
+          <div key={chat.id} className="px-2">
             <div className="flex">
               <Image src={chat.data.userImg} width={50} height={50} alt="nig" />
               <h1>
@@ -34,7 +34,7 @@ const Messages = () => {
   };
 
   return (
-    <div className="h-[75vh] overflow-auto">
+    <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
       <Chat />
     </div>
   );

@@ -16,8 +16,14 @@
   background: rgb(109, 109, 109);
 }
 
+@layer base {
+  * {
+    background-color: rgb(240, 240, 240);
+  }
+}
+
 @layer components {
   .btn {
-    @apply ml-auto bg-orange-400 p-2 rounded-md hover:bg-orange-500;
+    @apply bg-[#ba73c0] p-2 rounded-md hover:bg-[#b42ac0] transition-all;
   }
 }
