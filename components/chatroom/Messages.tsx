@@ -47,7 +47,9 @@ const Messages = () => {
     return (
       <>
         {reversed?.map((chat) => (
-          <div key={chat.id} className="relative px-2 mb-2 break-words ">
+          <div
+            key={chat.id}
+            className="relative px-2 mb-2 break-words min-h-[10%]">
             <Image
               className="rounded-full mr-2 absolute left-0 top-1"
               src={chat.data().userImg}
