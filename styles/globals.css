@@ -27,3 +27,16 @@
     @apply bg-[#ba73c0] p-2 rounded-md hover:bg-[#b42ac0] transition-all;
   }
 }
+
+.loader {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

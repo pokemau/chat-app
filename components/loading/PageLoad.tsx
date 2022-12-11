@@ -1,7 +1,14 @@
+import Image from "next/image";
+
 const PageLoad = () => {
   return (
-    <div className="flex items-center">
-      <h1>LOADING...</h1>
+    <div className="flex items-center justify-center h-screen w-screen">
+      <Image
+        className="loader rounded-full"
+        src="/assets/yui_loading.jpg"
+        width={200}
+        height={200}
+      />
     </div>
   );
 };

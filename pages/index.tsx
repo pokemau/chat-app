@@ -9,6 +9,8 @@ import PageLoad from "../components/loading/PageLoad";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
 
+  // return <PageLoad />;
+
   if (loading) {
     return <PageLoad />;
   }
