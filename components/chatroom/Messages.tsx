@@ -25,13 +25,17 @@ const Messages = () => {
       setChatsData(snapShot.docs.map((doc) => doc));
     });
 
+    // scrolla();
+
     return () => unsub();
   }, []);
 
-  // let user scroll to latest
-  const scrollToLatest = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    dummy.current?.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    scrolla();
+  }, [chatsData]);
+
+  const scrolla = () => {
+    if (chatsData) dummy.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // userMessage
@@ -75,13 +79,6 @@ const Messages = () => {
         onClick={getNextMessages}>
         Show More Messages
       </button> */}
-
-      <button
-        className="underline mb-2 hover:text-[#165ac2]"
-        onClick={scrollToLatest}
-        type="button">
-        Go To Latest
-      </button>
 
       <Chat />
 
