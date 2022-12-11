@@ -42,37 +42,6 @@ const Messages = () => {
   // userName
   // userImg
   // timeSent
-  const Chat = () => {
-    const reversed = [...chatsData].reverse();
-    return (
-      <>
-        {reversed?.map((chat) => (
-          <div
-            key={chat.id}
-            className="relative px-2 mb-2 break-words min-h-[10%]">
-            <Image
-              className="rounded-full mr-2 absolute left-0 top-1"
-              src={chat.data().userImg}
-              width={40}
-              height={40}
-              alt="nig"
-            />
-
-            <div className="ml-10">
-              <div className="flex items-center">
-                <h1 className="font-bold">{chat.data().userName}</h1>
-                <span className=" ml-2 text-[#adadad] text-xs font-bold">
-                  {chat.data().timeSent}
-                </span>
-              </div>
-
-              <h1>{chat.data().userMessage}</h1>
-            </div>
-          </div>
-        ))}
-      </>
-    );
-  };
 
   return (
     <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
@@ -82,10 +51,42 @@ const Messages = () => {
         Show More Messages
       </button> */}
 
-      <Chat />
+      <Chat chatsData={chatsData} />
 
       <div ref={dummy}></div>
     </div>
+  );
+};
+
+const Chat = ({ chatsData }) => {
+  const reversed = [...chatsData].reverse();
+  return (
+    <>
+      {reversed?.map((chat) => (
+        <div
+          key={chat.id}
+          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#ebebeb]">
+          <Image
+            className="z-0 absolute rounded-full left-2 top-1"
+            src={chat.data().userImg}
+            width={40}
+            height={40}
+            alt="nig"
+          />
+
+          <div className="ml-12">
+            <div className="flex items-center">
+              <h1 className="font-bold">{chat.data().userName}</h1>
+              <span className=" ml-2 text-[#adadad] text-xs font-bold">
+                {chat.data().timeSent}
+              </span>
+            </div>
+
+            <h1>{chat.data().userMessage}</h1>
+          </div>
+        </div>
+      ))}
+    </>
   );
 };
 

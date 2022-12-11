@@ -17,8 +17,8 @@
 }
 
 @layer base {
-  * {
-    background-color: rgb(240, 240, 240);
+  body {
+    background-color: #f0f0f0;
   }
 }
 
