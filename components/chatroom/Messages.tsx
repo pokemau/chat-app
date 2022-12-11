@@ -1,59 +1,37 @@
 import {
   collection,
-  getDocs,
   limit,
   onSnapshot,
   orderBy,
   query,
   startAfter,
-  startAt,
 } from "firebase/firestore";
-import { MouseEvent, useEffect, useState } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { db } from "../../firebase/client";
 import Image from "next/image";
 
 const Messages = () => {
-  const [latestDoc, setLatestDoc] = useState<null | any>(null);
   const [chatsData, setChatsData] = useState<any[]>([]);
+  const dummy = useRef<HTMLInputElement>(null);
 
-  // const [value, loading, error] = useCollection(
-  //   query(collection(db, "chats"), orderBy("timeStamp", "desc"), limit(10))
-  // );
-
-  // const chats = value?.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
-  // chats?.reverse();
-
-  // get latest 10 messages on page load
+  // get latest messages on page load
   useEffect(() => {
-    console.log("ran");
-    getMessages();
-  }, []);
-
-  const getMessages = async () => {
     const q = query(
       collection(db, "chats"),
       orderBy("timeStamp", "desc"),
-      startAfter(latestDoc || ""),
-      limit(10)
+      limit(30)
     );
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // console.log(doc);
-      const data = doc.data();
-      setChatsData((prevData) => [...prevData, { id: doc.id, data }]);
+    const unsub = onSnapshot(q, (snapShot) => {
+      setChatsData(snapShot.docs.map((doc) => doc));
     });
 
-    setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-  };
+    return () => unsub();
+  }, []);
 
-  const getNextMessages = (e: MouseEvent<HTMLButtonElement>) => {
+  // let user scroll to latest
+  const scrollToLatest = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    getMessages();
-
-    // console.log(chatsData);
+    dummy.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // userMessage
@@ -61,13 +39,14 @@ const Messages = () => {
   // userImg
   // timeSent
   const Chat = () => {
+    const reversed = [...chatsData].reverse();
     return (
       <>
-        {chatsData?.reverse().map((chat) => (
+        {reversed?.map((chat) => (
           <div key={chat.id} className="relative px-2 mb-2 break-words ">
             <Image
               className="rounded-full mr-2 absolute left-0 top-1"
-              src={chat.data.userImg}
+              src={chat.data().userImg}
               width={40}
               height={40}
               alt="nig"
@@ -75,13 +54,13 @@ const Messages = () => {
 
             <div className="ml-10">
               <div className="flex items-center">
-                <h1 className="font-bold">{chat.data.userName}</h1>
+                <h1 className="font-bold">{chat.data().userName}</h1>
                 <span className=" ml-2 text-[#adadad] text-xs font-bold">
-                  {chat.data.timeSent}
+                  {chat.data().timeSent}
                 </span>
               </div>
 
-              <h1>{chat.data.userMessage}</h1>
+              <h1>{chat.data().userMessage}</h1>
             </div>
           </div>
         ))}
@@ -91,13 +70,22 @@ const Messages = () => {
 
   return (
     <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
-      <button
+      {/* <button
         className="underline mb-2 hover:text-[#165ac2]"
         onClick={getNextMessages}>
         Show More Messages
+      </button> */}
+
+      <button
+        className="underline mb-2 hover:text-[#165ac2]"
+        onClick={scrollToLatest}
+        type="button">
+        Go To Latest
       </button>
 
       <Chat />
+
+      <div ref={dummy}></div>
     </div>
   );
 };

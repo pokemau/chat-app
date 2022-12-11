@@ -2,6 +2,7 @@
 import Messages from "./Messages";
 import Logout from "../loginlogout/Logout";
 import SendMessage from "./SendMessage";
+import { useRef } from "react";
 
 const ChatRoom = () => {
   return (

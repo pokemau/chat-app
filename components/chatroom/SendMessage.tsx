@@ -14,7 +14,7 @@ const SendMessage = () => {
 
   const sendHolder = () => {
     if (currMessage && currMessage.length <= 200) {
-      console.log(currMessage.length);
+      // console.log(currMessage.length);
       // date
       const d = new Date();
       let mins: number | string = String(d.getMinutes()).padStart(2, "0");
