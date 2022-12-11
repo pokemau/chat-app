@@ -71,7 +71,7 @@ const Chat = ({ chatsData }) => {
             src={chat.data().userImg}
             width={40}
             height={40}
-            alt="nig"
+            alt="user image"
           />
 
           <div className="ml-12">

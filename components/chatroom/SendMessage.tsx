@@ -17,21 +17,24 @@ const SendMessage = () => {
       // date
       const d = new Date();
       let mins: number | string = String(d.getMinutes()).padStart(2, "0");
-      let ms: string = String(d.getMilliseconds());
       let hour: number | string = d.getHours();
-      if (hour > 12) hour = hour - 12;
+      let amOrPm: string = "AM";
+      if (hour > 12) {
+        amOrPm = "PM";
+        hour = hour - 12;
+      }
       // user info
       let fullName = user?.displayName;
       const userName = fullName?.split(" ")[0];
-      setCurrMessage("");
 
+      setCurrMessage("");
       // run function to add message to db
       addMessageToDb(
         currMessage,
         serverTimestamp(),
         userName,
         user?.photoURL,
-        `${hour}:${mins}`
+        `${hour}:${mins} ${amOrPm}`
       );
     }
   };
