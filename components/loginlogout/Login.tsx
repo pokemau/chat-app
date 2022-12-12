@@ -5,9 +5,13 @@ const Login = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   return (
-    <div>
-      <h1>LogIn</h1>
-      <button onClick={() => signInWithGoogle()}>LogIn User</button>
+    <div className="flex items-center flex-col">
+      <h1 className="font-bold text-3xl text-center mt-2">Yahallo</h1>
+      <button
+        className="bg-[#fca5a5] mt-8 px-4 py-2 rounded hover:bg-[#ff8b8b] transition-all"
+        onClick={() => signInWithGoogle()}>
+        LogIn User
+      </button>
     </div>
   );
 };

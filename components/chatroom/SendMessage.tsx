@@ -51,6 +51,8 @@ const SendMessage = () => {
     if (e.code === "Enter") sendHolder();
   };
 
+  // 5 second timer for each user
+
   // function to write to db
   const addMessageToDb = async (
     userMessage: string,
