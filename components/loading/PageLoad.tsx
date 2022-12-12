@@ -9,6 +9,7 @@ const PageLoad = () => {
         width={200}
         height={200}
         alt="yui loading image"
+        priority
       />
     </div>
   );

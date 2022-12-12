@@ -12,6 +12,7 @@ import Image from "next/image";
 
 const Messages = () => {
   const [chatsData, setChatsData] = useState<any[]>([]);
+  const [limitCount, setLimitCount] = useState(30);
   const dummy = useRef<HTMLInputElement>(null);
 
   // get latest messages on page load
@@ -19,16 +20,14 @@ const Messages = () => {
     const q = query(
       collection(db, "chats"),
       orderBy("timeStamp", "desc"),
-      limit(30)
+      limit(limitCount)
     );
     const unsub = onSnapshot(q, (snapShot) => {
       setChatsData(snapShot.docs.map((doc) => doc));
     });
 
-    // scrolla();
-
     return () => unsub();
-  }, []);
+  }, [limitCount]);
 
   useEffect(() => {
     scrolla();
@@ -38,6 +37,11 @@ const Messages = () => {
     if (chatsData) dummy.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const getMoreMessages = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLimitCount(limitCount + 5);
+  };
+
   // userMessage
   // userName
   // userImg
@@ -45,11 +49,11 @@ const Messages = () => {
 
   return (
     <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
-      {/* <button
+      <button
         className="underline mb-2 hover:text-[#165ac2]"
-        onClick={getNextMessages}>
+        onClick={getMoreMessages}>
         Show More Messages
-      </button> */}
+      </button>
 
       <Chat chatsData={chatsData} />
 
@@ -58,14 +62,18 @@ const Messages = () => {
   );
 };
 
-const Chat = ({ chatsData }) => {
+interface chatsProps {
+  chatsData: any[];
+}
+
+const Chat: React.FC<chatsProps> = ({ chatsData }) => {
   const reversed = [...chatsData].reverse();
   return (
     <>
       {reversed?.map((chat) => (
         <div
           key={chat.id}
-          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#ebebeb]">
+          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#dfdfdf]">
           <Image
             className="z-0 absolute rounded-full left-2 top-1"
             src={chat.data().userImg}
@@ -77,9 +85,9 @@ const Chat = ({ chatsData }) => {
           <div className="ml-12">
             <div className="flex items-center">
               <h1 className="font-bold">{chat.data().userName}</h1>
-              <span className=" ml-2 text-[#adadad] text-xs font-bold">
+              <p className=" ml-2 text-[#adadad] text-xs font-bold">
                 {chat.data().timeSent}
-              </span>
+              </p>
             </div>
 
             <h1>{chat.data().userMessage}</h1>
