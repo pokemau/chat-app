@@ -24,7 +24,7 @@
 
 @layer components {
   .btn {
-    @apply bg-[#ba73c0] p-2 rounded-md hover:bg-[#b42ac0] transition-all;
+    @apply bg-[#fca5a5] p-2 rounded-md hover:bg-[#ff8b8b] transition-all;
   }
 }
 
