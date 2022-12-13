@@ -1,5 +1,5 @@
 import { HiMenu } from "react-icons/hi";
-import { MouseEvent, RefObject, useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import Logout from "../loginlogout/Logout";
 
 const styles = {
@@ -17,7 +17,7 @@ const HamburgerMenu = () => {
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
+    document.addEventListener("click", handler);
 
     return () => document.removeEventListener("mousedown", handler);
   });
@@ -35,9 +35,9 @@ const HamburgerMenu = () => {
       </div>
 
       <div
-        className={`z-10 absolute bg-[#e0e0e0] top-8 -left-7 ${
+        className={`z-10 absolute bg-[#e0e0e0] top-10 -left-7 ${
           isOpen ? styles.active : styles.inactive
-        } transition-all origin-top p-2 rounded flex flex-col items-center`}>
+        } transition-all origin-top p-2 rounded flex flex-col items-center noselect`}>
         <Logout />
       </div>
     </div>
