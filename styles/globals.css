@@ -26,6 +26,9 @@
   .btn {
     @apply bg-[#fca5a5] p-2 rounded-md hover:bg-[#ff8b8b] transition-all;
   }
+  .menu-link {
+    @apply cursor-pointer px-4 py-2 rounded hover:bg-[#fca5a5];
+  }
 }
 
 .loader {

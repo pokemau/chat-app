@@ -3,7 +3,7 @@ import ChatRoom from "../components/chatroom/ChatRoom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 // components
-import Login from "../components/loginlogout/Login";
+import Login from "../components/menu/Login";
 import PageLoad from "../components/loading/PageLoad";
 
 const Home = () => {

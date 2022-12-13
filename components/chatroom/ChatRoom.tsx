@@ -1,6 +1,6 @@
 // components
 import Messages from "./Messages";
-import Logout from "../loginlogout/Logout";
+import Logout from "../menu/Logout";
 import SendMessage from "./SendMessage";
 import HamburgerMenu from "../menu/HamburgerMenu";
 

@@ -7,7 +7,7 @@ const Logout = () => {
   if (loading) return <h1>Logging Out</h1>;
 
   return (
-    <button className="btn ml-auto" onClick={() => signOut()}>
+    <button className="b" onClick={() => signOut()}>
       Logout
     </button>
   );

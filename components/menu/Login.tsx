@@ -18,7 +18,7 @@ const Login = () => {
       <button
         className="bg-[#fca5a5] mt-8 px-4 py-2 rounded hover:bg-[#ff8b8b] transition-all"
         onClick={() => signInWithGoogle()}>
-        LogIn User
+        Login
       </button>
     </div>
   );
