@@ -1,5 +1,6 @@
 import { HiMenu } from "react-icons/hi";
 import { MouseEvent, RefObject, useEffect, useRef, useState } from "react";
+import Logout from "../loginlogout/Logout";
 
 const styles = {
   active: `scale-100`,
@@ -23,20 +24,21 @@ const HamburgerMenu = () => {
 
   return (
     <div className="ml-auto relative" ref={menuRef}>
-      <HiMenu
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-        id="hambMenu"
-        className=" text-3xl cursor-pointer"
-      />
+      <div>
+        <HiMenu
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+          id="hambMenu"
+          className="text-3xl cursor-pointer"
+        />
+      </div>
 
       <div
-        className={`z-10 absolute bg-[#e0e0e0] top-8 ${
+        className={`z-10 absolute bg-[#e0e0e0] top-8 -left-7 ${
           isOpen ? styles.active : styles.inactive
-        } transition-all origin-top-left`}>
-        <h1>Profile</h1>
-        <h1>Logout</h1>
+        } transition-all origin-top p-2 rounded flex flex-col items-center`}>
+        <Logout />
       </div>
     </div>
   );

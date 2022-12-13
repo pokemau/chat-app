@@ -8,7 +8,7 @@ const Logout = () => {
 
   return (
     <button className="btn ml-auto" onClick={() => signOut()}>
-      Logout User
+      Logout
     </button>
   );
 };
