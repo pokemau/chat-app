@@ -2,7 +2,7 @@
 import Messages from "./Messages";
 import Logout from "../loginlogout/Logout";
 import SendMessage from "./SendMessage";
-import { useRef } from "react";
+import HamburgerMenu from "../menu/HamburgerMenu";
 
 const ChatRoom = () => {
   return (
@@ -10,7 +10,9 @@ const ChatRoom = () => {
       <nav className="flex h-[10%] px-4 items-center border-b-[1px] border-[#a7a7a7]">
         <h1 className="font-bold text-2xl">Welcome to Yahallo</h1>
 
-        <Logout />
+        <HamburgerMenu />
+
+        {/* <Logout /> */}
       </nav>
 
       <Messages />
