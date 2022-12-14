@@ -1,11 +1,36 @@
-import { ChangeEvent, useState, MouseEvent, KeyboardEvent } from "react";
+import {
+  ChangeEvent,
+  useState,
+  MouseEvent,
+  KeyboardEvent,
+  useEffect,
+} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
+const cdNum = 5;
+
 const SendMessage = () => {
   const [currMessage, setCurrMessage] = useState<string>("");
   const [user, loading, error] = useAuthState(auth);
+  const [senderCd, setSenderCd] = useState(true);
+  const [cd, setCd] = useState(cdNum);
+
+  const sendCooldown = () => {
+    setSenderCd(false);
+
+    const intervalId = setInterval(() => {
+      setCd((cd) => cd - 1);
+    }, 1000);
+
+    const timeout = setTimeout(() => {
+      setSenderCd(true);
+      clearInterval(intervalId);
+      clearTimeout(timeout);
+      setCd(cdNum);
+    }, 5000);
+  };
 
   // get value of input tag
   const handleInputVal = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,11 +39,15 @@ const SendMessage = () => {
 
   const sendHolder = () => {
     if (currMessage.trim() && currMessage.trim().length <= 200) {
+      sendCooldown();
+
+      // turnOnCooldown();
       // date
       const d = new Date();
       let mins: number | string = String(d.getMinutes()).padStart(2, "0");
       let hour: number | string = d.getHours();
       let amOrPm: string = "AM";
+      if (hour < 1) hour = 12;
       if (hour > 12) {
         amOrPm = "PM";
         hour = hour - 12;
@@ -47,11 +76,8 @@ const SendMessage = () => {
   };
   // send message with enter key
   const sendOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    // console.log(e);
     if (e.code === "Enter") sendHolder();
   };
-
-  // 5 second timer for each user
 
   // function to write to db
   const addMessageToDb = async (
@@ -75,18 +101,19 @@ const SendMessage = () => {
       <input
         value={currMessage}
         onChange={handleInputVal}
-        onKeyDown={sendOnEnter}
+        onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
         className="flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#ddd]"
         type="text"
         placeholder="Message..."
+        disabled={senderCd ? false : true}
       />
 
       <button
         className="btn ml-2 py-[.8em] px-4 md:w-[15%]"
         onClick={sendMessage}
         type="button"
-        disabled={true}>
-        Send
+        disabled={senderCd ? false : true}>
+        Send {senderCd ? null : cd}
       </button>
     </div>
   );

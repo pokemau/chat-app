@@ -7,7 +7,9 @@ const Logout = () => {
   if (loading) return <h1>Logging Out</h1>;
 
   return (
-    <button className="b" onClick={() => signOut()}>
+    <button
+      className="menu-link rounded-tr-none rounded-tl-none"
+      onClick={() => signOut()}>
       Logout
     </button>
   );

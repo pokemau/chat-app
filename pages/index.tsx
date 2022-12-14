@@ -9,12 +9,12 @@ import PageLoad from "../components/loading/PageLoad";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  if (loading) {
-    return <PageLoad />;
-  }
-  if (!user) {
-    return <Login />;
-  } else return <ChatRoom />;
+  return (
+    <>
+      {loading && <PageLoad />}
+      {!user ? <Login /> : <ChatRoom />}
+    </>
+  );
 };
 
 export default Home;

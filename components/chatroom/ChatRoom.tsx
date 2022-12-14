@@ -1,6 +1,5 @@
 // components
 import Messages from "./Messages";
-import Logout from "../menu/Logout";
 import SendMessage from "./SendMessage";
 import HamburgerMenu from "../menu/HamburgerMenu";
 
@@ -11,8 +10,6 @@ const ChatRoom = () => {
         <h1 className="font-bold text-2xl">Welcome to Yahallo</h1>
 
         <HamburgerMenu />
-
-        {/* <Logout /> */}
       </nav>
 
       <Messages />
