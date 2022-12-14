@@ -1,15 +1,13 @@
-import {
-  ChangeEvent,
-  useState,
-  MouseEvent,
-  KeyboardEvent,
-  useEffect,
-} from "react";
+import { ChangeEvent, useState, MouseEvent, KeyboardEvent } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const cdNum = 5;
+
+const styles = {
+  inactive: `hover:cursor-not-allowed hover:bg-[#ce8787] text-[#757272] bg-[#ce8787]`,
+};
 
 const SendMessage = () => {
   const [currMessage, setCurrMessage] = useState<string>("");
@@ -17,6 +15,7 @@ const SendMessage = () => {
   const [senderCd, setSenderCd] = useState(true);
   const [cd, setCd] = useState(cdNum);
 
+  // 5 sec cooldown after sending a message
   const sendCooldown = () => {
     setSenderCd(false);
 
@@ -40,8 +39,8 @@ const SendMessage = () => {
   const sendHolder = () => {
     if (currMessage.trim() && currMessage.trim().length <= 200) {
       sendCooldown();
+      console.log(user);
 
-      // turnOnCooldown();
       // date
       const d = new Date();
       let mins: number | string = String(d.getMinutes()).padStart(2, "0");
@@ -53,8 +52,7 @@ const SendMessage = () => {
         hour = hour - 12;
       }
       // user info
-      let fullName = user?.displayName;
-      const userName = fullName?.split(" ")[0];
+      const userName = user?.displayName;
 
       setCurrMessage("");
       // run function to add message to db
@@ -83,7 +81,7 @@ const SendMessage = () => {
   const addMessageToDb = async (
     userMessage: string,
     timeStamp: any,
-    userName: string | undefined,
+    userName: string | null | undefined,
     userImg: string | null | undefined,
     timeSent: string | number
   ) => {
@@ -102,14 +100,18 @@ const SendMessage = () => {
         value={currMessage}
         onChange={handleInputVal}
         onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
-        className="flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#ddd]"
+        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#ddd] ${
+          senderCd ? null : "hover:cursor-not-allowed"
+        }`}
         type="text"
         placeholder="Message..."
         disabled={senderCd ? false : true}
       />
 
       <button
-        className="btn ml-2 py-[.8em] px-4 md:w-[15%]"
+        className={`btn ml-2 py-[.8em] px-4 md:w-[15%] ${
+          senderCd ? null : styles.inactive
+        }`}
         onClick={sendMessage}
         type="button"
         disabled={senderCd ? false : true}>

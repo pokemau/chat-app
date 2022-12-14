@@ -84,7 +84,9 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
 
           <div className="ml-12">
             <div className="flex items-center">
-              <h1 className="font-bold">{chat.data().userName}</h1>
+              <h1 className="font-bold">
+                {chat.data().userName.split(" ")[0]}
+              </h1>
               <p className=" ml-2 text-[#adadad] text-xs font-bold">
                 {chat.data().timeSent}
               </p>
