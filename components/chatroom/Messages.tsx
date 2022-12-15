@@ -48,7 +48,7 @@ const Messages = () => {
   // timeSent
 
   return (
-    <div className="py-2 sidebar h-[75%] overflow-auto w-[80%] m-auto">
+    <div className="py-2 sidebar h-[75%] overflow-auto px-4 md:px-0 md:w-[80%] m-auto">
       <button
         className="underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>
