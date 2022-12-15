@@ -48,7 +48,7 @@ const Messages = () => {
   // timeSent
 
   return (
-    <div className="py-2 sidebar h-[75%] overflow-auto border-b-[1px]">
+    <div className="py-2 sidebar h-[75%] overflow-auto w-[80%] m-auto">
       <button
         className="underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>
@@ -73,7 +73,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
       {reversed?.map((chat) => (
         <div
           key={chat.id}
-          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#dfdfdf]">
+          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#1B1D2A]">
           <Image
             className="z-0 absolute rounded-full left-2 top-1"
             src={chat.data().userImg}
@@ -87,7 +87,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
               <h1 className="font-bold">
                 {chat.data().userName.split(" ")[0]}
               </h1>
-              <p className=" ml-2 text-[#adadad] text-xs font-bold">
+              <p className=" ml-2 text-[#575757] text-xs font-bold">
                 {chat.data().timeSent}
               </p>
             </div>

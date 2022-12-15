@@ -16,7 +16,7 @@ const Login = () => {
         alt="yui waving"
       />
       <button
-        className="bg-[#fca5a5] mt-8 px-4 py-2 rounded hover:bg-[#ff8b8b] transition-all"
+        className="btn mt-4 px-4 transition-all"
         onClick={() => signInWithGoogle()}>
         Login
       </button>

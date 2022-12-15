@@ -8,7 +8,7 @@ const Logout = () => {
 
   return (
     <button
-      className="menu-link rounded-tr-none rounded-tl-none"
+      className="menu-link font-semibold hover:text-[#4C73F8] hover:bg-[#343746]"
       onClick={() => signOut()}>
       Logout
     </button>

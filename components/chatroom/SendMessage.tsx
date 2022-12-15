@@ -95,12 +95,12 @@ const SendMessage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
+    <div className="flex w-[80%] m-auto  items-center justify-center md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
       <input
         value={currMessage}
         onChange={handleInputVal}
         onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
-        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#ddd] ${
+        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#343746] border-[1px] border-[#333] ${
           senderCd ? null : "hover:cursor-not-allowed"
         }`}
         type="text"
