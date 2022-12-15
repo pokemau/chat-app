@@ -53,3 +53,9 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
+
+@media all and (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+}
