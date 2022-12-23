@@ -10,9 +10,6 @@ import { db } from "../../firebase/client";
 import Image from "next/image";
 import { SendMessageProps } from "./SendMessage";
 
-// custom hook
-import useOnScreen from "../hooks/useOnScreen";
-
 const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [chatsData, setChatsData] = useState<any[]>([]);
   const [limitCount, setLimitCount] = useState(30);
