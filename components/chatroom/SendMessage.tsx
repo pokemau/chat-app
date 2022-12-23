@@ -16,7 +16,7 @@ const styles = {
   inactive: `hover:cursor-not-allowed hover:bg-[#ce8787] text-[#757272] bg-[#ce8787]`,
 };
 
-interface SendMessageProps {
+export interface SendMessageProps {
   dummy: RefObject<HTMLDivElement>;
   isVisible: boolean;
 }

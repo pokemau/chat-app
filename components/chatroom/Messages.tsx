@@ -8,16 +8,14 @@ import {
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { db } from "../../firebase/client";
 import Image from "next/image";
+import { SendMessageProps } from "./SendMessage";
 
 // custom hook
 import useOnScreen from "../hooks/useOnScreen";
 
-const Messages = () => {
+const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [chatsData, setChatsData] = useState<any[]>([]);
   const [limitCount, setLimitCount] = useState(30);
-
-  const dummy = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(dummy);
 
   // get latest messages on page load
   useEffect(() => {

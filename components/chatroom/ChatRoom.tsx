@@ -19,7 +19,7 @@ const ChatRoom = () => {
       </nav>
 
       <div className="py-2 sidebar h-[75%] overflow-auto w-[90%] md:px-0 md:w-[80%] m-auto">
-        <Messages />
+        <Messages dummy={dummy} isVisible={isVisible} />
         <div ref={dummy}></div>
       </div>
 
