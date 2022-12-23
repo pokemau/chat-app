@@ -4,16 +4,20 @@ import {
   onSnapshot,
   orderBy,
   query,
-  startAfter,
 } from "firebase/firestore";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { db } from "../../firebase/client";
 import Image from "next/image";
 
+// custom hook
+import useOnScreen from "../hooks/useOnScreen";
+
 const Messages = () => {
   const [chatsData, setChatsData] = useState<any[]>([]);
   const [limitCount, setLimitCount] = useState(30);
-  const dummy = useRef<HTMLInputElement>(null);
+
+  const dummy = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(dummy);
 
   // get latest messages on page load
   useEffect(() => {
@@ -29,14 +33,17 @@ const Messages = () => {
     return () => unsub();
   }, [limitCount]);
 
+  // run when chatsData is increased
   useEffect(() => {
-    scrolla();
+    if (isVisible) scrolla();
   }, [chatsData]);
 
+  // scroll to latest
   const scrolla = () => {
     if (chatsData) dummy.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // load more messages
   const getMoreMessages = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLimitCount(limitCount + 5);
@@ -48,7 +55,7 @@ const Messages = () => {
   // timeSent
 
   return (
-    <div className="py-2 sidebar h-[75%] overflow-auto w-[90%] md:px-0 md:w-[80%] m-auto">
+    <div>
       <button
         className="underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>

@@ -1,4 +1,11 @@
-import { ChangeEvent, useState, MouseEvent, KeyboardEvent } from "react";
+import {
+  ChangeEvent,
+  useState,
+  MouseEvent,
+  KeyboardEvent,
+  RefObject,
+  forwardRef,
+} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -9,7 +16,12 @@ const styles = {
   inactive: `hover:cursor-not-allowed hover:bg-[#ce8787] text-[#757272] bg-[#ce8787]`,
 };
 
-const SendMessage = () => {
+interface SendMessageProps {
+  dummy: RefObject<HTMLDivElement>;
+  isVisible: boolean;
+}
+
+const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [currMessage, setCurrMessage] = useState<string>("");
   const [user, loading, error] = useAuthState(auth);
   const [senderCd, setSenderCd] = useState(true);
@@ -39,7 +51,8 @@ const SendMessage = () => {
   const sendHolder = () => {
     if (currMessage.trim() && currMessage.trim().length <= 200) {
       sendCooldown();
-      console.log(user);
+
+      if (!isVisible) dummy.current?.scrollIntoView();
 
       // date
       const d = new Date();
