@@ -4,22 +4,17 @@ import {
   MouseEvent,
   KeyboardEvent,
   RefObject,
-  forwardRef,
 } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-const cdNum = 5;
-
-const styles = {
-  inactive: `hover:cursor-not-allowed bg-[#343746] text-[#757272] hover:text-[#757272] hover:bg-[#343746]`,
-};
-
 export interface SendMessageProps {
   dummy: RefObject<HTMLDivElement>;
   isVisible: boolean;
 }
+
+const cdNum = 5;
 
 const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [currMessage, setCurrMessage] = useState<string>("");
@@ -48,6 +43,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
     setCurrMessage(e.target.value);
   };
 
+  // send holder
   const sendHolder = () => {
     if (currMessage.trim() && currMessage.trim().length <= 200) {
       sendCooldown();
@@ -123,7 +119,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
 
       <button
         className={`btn ml-2 py-[.8em] px-4 md:w-[15%] ${
-          senderCd ? null : styles.inactive
+          senderCd ? null : "inactive"
         }`}
         onClick={sendMessage}
         type="button"

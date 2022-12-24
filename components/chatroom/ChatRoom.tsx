@@ -10,18 +10,17 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
 
 // hooks
-import { useRef, MouseEvent, useState, useEffect } from "react";
+import { useRef } from "react";
 import useOnScreen from "../hooks/useOnScreen";
 
 const ChatRoom = () => {
   const dummy = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(dummy);
 
-  // const [theme, setTheme] = useState(true);
-
-  //test
+  // theme if darkmode or not
   const { systemTheme, theme, setTheme } = useTheme();
 
+  // render sun or moon icon based on theme
   const themeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
 
