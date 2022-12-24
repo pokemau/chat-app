@@ -13,7 +13,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 const cdNum = 5;
 
 const styles = {
-  inactive: `hover:cursor-not-allowed hover:bg-[#ce8787] text-[#757272] bg-[#ce8787]`,
+  inactive: `hover:cursor-not-allowed bg-[#343746] text-[#757272] hover:text-[#757272] hover:bg-[#343746]`,
 };
 
 export interface SendMessageProps {
@@ -108,12 +108,12 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   };
 
   return (
-    <div className="flex m-auto items-center justify-center px-2 md:w-[80%] md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
+    <div className=" flex m-auto items-center justify-center px-2 md:w-[80%] md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
       <input
         value={currMessage}
         onChange={handleInputVal}
         onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
-        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none bg-[#343746] border-[1px] border-[#333] ${
+        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none dark:bg-[#343746] border-[1px] border-[#bdbdbd] dark:border-[#333] ${
           senderCd ? null : "hover:cursor-not-allowed"
         }`}
         type="text"

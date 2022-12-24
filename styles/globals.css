@@ -18,8 +18,8 @@
 
 @layer base {
   body {
-    background-color: #0c0f1d;
-    color: #dfdfdf;
+    /* text #dfdfdf; */
+    @apply dark:bg-[#0c0f1d] bg-[#f0f0f0];
   }
 }
 
@@ -28,7 +28,7 @@
     @apply bg-[#363F7E] text-[#657EF8] font-semibold p-2 rounded-md hover:bg-[#5763bd] hover:text-[#fff] transition-all;
   }
   .menu-link {
-    @apply cursor-pointer px-4 py-2 rounded hover:bg-[#fca5a5];
+    @apply cursor-pointer px-4 py-2 rounded bg-[#f0f0f0] hover:bg-[#dfdfdf];
   }
 }
 

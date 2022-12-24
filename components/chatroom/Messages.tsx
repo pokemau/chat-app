@@ -75,7 +75,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
       {reversed?.map((chat) => (
         <div
           key={chat.id}
-          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#1B1D2A]">
+          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#e0e0e0] dark:hover:bg-[#1B1D2A]">
           <Image
             className="z-0 absolute rounded-full left-2 top-1"
             src={chat.data().userImg}
