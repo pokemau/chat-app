@@ -28,7 +28,7 @@ const Navbar = () => {
   };
   return (
     <nav className="flex w-full h-[10vh] px-6 md:px-20 items-center border-b-[1px] border-[#ddd] dark:border-[#0c0f1d] dark:bg-[#1B1D2A] ">
-      <h1 className="font-bold text-2xl">Welcome to Yahallo</h1>
+      <h1 className="font-bold text-2xl">Yahallo</h1>
 
       <div className="flex ml-auto items-center gap-2">
         <div className="cursor-pointer mr-2">{themeChanger()}</div>
