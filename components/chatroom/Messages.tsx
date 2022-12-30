@@ -52,7 +52,7 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   return (
     <div>
       <button
-        className="underline mb-2 hover:text-[#165ac2]"
+        className="noselect underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>
         Show More Messages
       </button>

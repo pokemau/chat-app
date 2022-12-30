@@ -28,7 +28,7 @@
     @apply bg-[#363F7E] text-[#657EF8] font-semibold p-2 rounded-md hover:bg-[#5763bd] hover:text-[#fff] transition-all;
   }
   .menu-link {
-    @apply cursor-pointer px-4 py-2 rounded bg-[#f0f0f0] hover:bg-[#dfdfdf];
+    @apply cursor-pointer px-4 py-2 rounded bg-[#f0f0f0] hover:bg-[#dfdfdf] font-semibold dark:bg-[#1B1D2A] dark:hover:text-[#4C73F8] dark:hover:bg-[#343746];
   }
   .inactive {
     @apply hover:cursor-not-allowed bg-[#343746] text-[#757272] hover:text-[#757272] hover:bg-[#343746];

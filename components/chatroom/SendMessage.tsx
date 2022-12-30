@@ -118,7 +118,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
       />
 
       <button
-        className={`btn ml-2 py-[.8em] px-4 md:w-[15%] ${
+        className={`btn ml-2 py-[.8em] px-2 w-[20%] md:w-[15%] ${
           senderCd ? null : "inactive"
         }`}
         onClick={sendMessage}

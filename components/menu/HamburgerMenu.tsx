@@ -1,5 +1,6 @@
 import { HiMenu } from "react-icons/hi";
 import { MouseEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 // components
 import Logout from "./Logout";
@@ -42,6 +43,10 @@ const HamburgerMenu = () => {
         } transition-all duration-100 origin-top rounded flex flex-col items-center noselect`}>
         <div className="w-full">
           <Logout />
+        </div>
+
+        <div className="w-full menu-link">
+          <Link href="profile">Profile</Link>
         </div>
       </div>
     </div>

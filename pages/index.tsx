@@ -12,13 +12,6 @@ const Home = () => {
   if (loading) return <PageLoad />;
   if (user) return <ChatRoom />;
   else return <Login />;
-
-  // return (
-  //   <>
-  //     {loading && <PageLoad />}
-  //     {!user ? <Login /> : <ChatRoom />}
-  //   </>
-  // );
 };
 
 export default Home;
