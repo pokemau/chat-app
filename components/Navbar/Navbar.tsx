@@ -33,7 +33,6 @@ const Navbar = () => {
       <Link className="font-bold text-2xl" href="/">
         Yahallo
       </Link>
-      {/* <h1 className="font-bold text-2xl">Yahallo</h1> */}
 
       <div className="flex ml-auto items-center gap-2">
         <div className="cursor-pointer mr-2">{themeChanger()}</div>
