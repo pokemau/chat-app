@@ -22,6 +22,9 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [senderCd, setSenderCd] = useState(true);
   const [cd, setCd] = useState(cdNum);
 
+  // test
+  const [messageLimit, setMessageLimit] = useState("");
+
   // 5 sec cooldown after sending a message
   const sendCooldown = () => {
     setSenderCd(false);
@@ -48,6 +51,8 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
     if (currMessage.trim() && currMessage.trim().length <= 200) {
       sendCooldown();
 
+      setMessageLimit("");
+
       if (!isVisible) dummy.current?.scrollIntoView();
 
       // date
@@ -72,6 +77,8 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
         user?.photoURL,
         `${hour}:${mins} ${amOrPm}`
       );
+    } else {
+      setMessageLimit("Max 200 words only!");
     }
   };
 
@@ -104,28 +111,32 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   };
 
   return (
-    <div className=" flex m-auto items-center justify-center px-2 md:w-[80%] md:px-10 h-[15%] border-t-[1px] border-[#a7a7a7]">
-      <input
-        value={currMessage}
-        onChange={handleInputVal}
-        onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
-        className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none dark:bg-[#343746] border-[1px] border-[#bdbdbd] dark:border-[#333] ${
-          senderCd ? null : "hover:cursor-not-allowed"
-        }`}
-        type="text"
-        placeholder="Message..."
-        disabled={senderCd ? false : true}
-      />
+    <div className="flex flex-col m-auto justify-center px-2 md:w-[80%] md:px-10 h-[20%] border-t-[1px] border-[#a7a7a7]">
+      <div className="flex">
+        <input
+          value={currMessage}
+          onChange={handleInputVal}
+          onKeyDown={(e) => (senderCd ? sendOnEnter(e) : null)}
+          className={`flex px-2 py-[.8em] items-center rounded w-[80%] focus:outline-none dark:bg-[#343746] border-[1px] border-[#bdbdbd] dark:border-[#333] ${
+            senderCd ? null : "hover:cursor-not-allowed"
+          }`}
+          type="text"
+          placeholder="Message..."
+          disabled={senderCd ? false : true}
+        />
 
-      <button
-        className={`btn ml-2 py-[.8em] px-2 w-[25%] md:w-[15%] ${
-          senderCd ? null : "inactive"
-        }`}
-        onClick={sendMessage}
-        type="button"
-        disabled={senderCd ? false : true}>
-        Send {senderCd ? null : cd}
-      </button>
+        <button
+          className={`btn ml-2 py-[.8em] px-2 w-[25%] md:w-[15%] ${
+            senderCd ? null : "inactive"
+          }`}
+          onClick={sendMessage}
+          type="button"
+          disabled={senderCd ? false : true}>
+          Send {senderCd ? null : cd}
+        </button>
+      </div>
+
+      <h1 className="text-xs text-[#e71515] font-bold">{messageLimit}</h1>
     </div>
   );
 };

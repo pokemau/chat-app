@@ -12,7 +12,7 @@ const ChatRoom = () => {
 
   return (
     <div className="h-[90vh] mx-auto">
-      <div className="py-2 sidebar h-[85%] overflow-auto w-[90%] md:px-0 md:w-[80%] m-auto">
+      <div className="py-2 sidebar h-[80%] overflow-auto w-[90%] md:px-0 md:w-[80%] m-auto">
         <Messages dummy={dummy} isVisible={isVisible} />
 
         <div ref={dummy}></div>
