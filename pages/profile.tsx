@@ -23,7 +23,7 @@ const Profile = () => {
         <Image
           className="mr-2"
           src={userImgURL ? userImgURL : "/assets/yui_loading.jpg"}
-          alt="user profile pic"
+          alt={`${userDisplayName} profile pic`}
           width={80}
           height={80}></Image>
 
