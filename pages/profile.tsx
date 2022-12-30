@@ -1,4 +1,5 @@
 import PageLoad from "../components/loading/PageLoad";
+import Login from "../components/menu/Login";
 import { auth } from "../firebase/client";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -11,9 +12,10 @@ const Profile = () => {
         <h1>{user.displayName}</h1>
       </div>
     );
-  } else {
-    return <PageLoad />;
   }
+  if (loading) {
+    return <PageLoad />;
+  } else return <Login />;
 };
 
 const UserData = () => {};

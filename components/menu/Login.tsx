@@ -1,6 +1,7 @@
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/client";
 import Image from "next/image";
+import Link from "next/link";
 
 const Login = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -15,11 +16,14 @@ const Login = () => {
         height={100}
         alt="yui waving"
       />
-      <button
-        className="btn mt-4 px-4 transition-all"
-        onClick={() => signInWithGoogle()}>
-        Login
-      </button>
+
+      <Link href="/">
+        <button
+          className="btn mt-4 px-4 transition-all"
+          onClick={() => signInWithGoogle()}>
+          Login
+        </button>
+      </Link>
     </div>
   );
 };

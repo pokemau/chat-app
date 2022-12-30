@@ -4,7 +4,12 @@ import Head from "next/head";
 import { ThemeProvider } from "next-themes";
 import Navbar from "../components/Navbar/Navbar";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/client";
+
 export default function App({ Component, pageProps }: AppProps) {
+  const [user, loading, error] = useAuthState(auth);
+
   return (
     <>
       <ThemeProvider enableSystem={true} attribute="class">
@@ -12,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <title>Yahallo | Chat</title>
         </Head>
 
-        <Navbar />
+        {user ? <Navbar /> : null}
         <Component {...pageProps} />
       </ThemeProvider>
     </>
