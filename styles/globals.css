@@ -17,6 +17,9 @@
 }
 
 @layer base {
+  * {
+    @apply box-border;
+  }
   body {
     /* text #dfdfdf; */
     @apply dark:bg-[#0c0f1d] bg-[#f0f0f0];

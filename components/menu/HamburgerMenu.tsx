@@ -1,9 +1,8 @@
 import { HiMenu } from "react-icons/hi";
-import { MouseEvent, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
-// components
 import Logout from "./Logout";
+import Profile from "./Profile";
 
 const styles = {
   active: `scale-100`,
@@ -38,15 +37,13 @@ const HamburgerMenu = () => {
       </div>
 
       <div
-        className={`z-10 absolute dark:bg-[#1B1D2A] border-[1px] shadow-md border-[#dbdbdb] dark:border-[#242424] drop-shadow-[0_0_10px_rgb(177, 177, 177)] top-10 -left-10 ${
+        className={`z-10 absolute dark:bg-[#1B1D2A] border-[1px] shadow-md border-[#dbdbdb] dark:border-[#242424] drop-shadow-[0_0_10px_rgb(177, 177, 177)] top-10 -left-10 transition-all duration-100 origin-top rounded flex flex-col justify-center items-center noselect ${
           isOpen ? styles.active : styles.inactive
-        } transition-all duration-100 origin-top rounded flex flex-col items-center noselect`}>
-        <div className="w-full">
+        }`}>
+        <div className="text-center">
           <Logout />
-        </div>
 
-        <div className="w-full menu-link">
-          <Link href="profile">Profile</Link>
+          <Profile />
         </div>
       </div>
     </div>
