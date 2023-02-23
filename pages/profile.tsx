@@ -2,6 +2,7 @@
 import PageLoad from "../components/loading/PageLoad";
 import Login from "../components/menu/Login";
 
+// firebase imports
 import { auth } from "../firebase/client";
 import { useAuthState } from "react-firebase-hooks/auth";
 

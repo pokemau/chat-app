@@ -1,17 +1,22 @@
+// firebase imports
 import {
+  DocumentData,
   collection,
   limit,
   onSnapshot,
   orderBy,
   query,
 } from "firebase/firestore";
-import { MouseEvent, useEffect, useRef, useState } from "react";
 import { db } from "../../firebase/client";
-import Image from "next/image";
+
+// components
 import { SendMessageProps } from "./SendMessage";
 
+import { MouseEvent, useEffect, useState } from "react";
+import Image from "next/image";
+
 const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
-  const [chatsData, setChatsData] = useState<any[]>([]);
+  const [chatsData, setChatsData] = useState<DocumentData[]>([]);
   const [limitCount, setLimitCount] = useState(30);
 
   // get latest messages on page load
@@ -65,7 +70,7 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
 };
 
 interface chatsProps {
-  chatsData: any[];
+  chatsData: DocumentData[];
 }
 
 const Chat: React.FC<chatsProps> = ({ chatsData }) => {

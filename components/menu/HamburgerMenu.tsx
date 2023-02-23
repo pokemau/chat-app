@@ -14,8 +14,8 @@ const HamburgerMenu = () => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = (e: any) => {
-      if (!menuRef.current?.contains(e.target)) {
+    const handler = (e: Event) => {
+      if (!menuRef.current?.contains(e.target as HTMLDivElement)) {
         setIsOpen(false);
       }
     };
