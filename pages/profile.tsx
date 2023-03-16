@@ -16,8 +16,6 @@ const Profile = () => {
   const userDisplayName = user?.displayName;
   const userEmail = user?.email;
 
-  if (user) console.log(user);
-
   if (user) {
     return (
       <div className="flex items-center justify-center mt-4">
