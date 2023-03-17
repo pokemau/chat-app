@@ -38,6 +38,4 @@ const Profile = () => {
   } else return <Login />;
 };
 
-const UserData = () => {};
-
 export default Profile;

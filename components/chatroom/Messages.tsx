@@ -35,15 +35,13 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
 
   // run when chatsData is increased
   useEffect(() => {
-    if (isVisible) scrolla();
+    if (isVisible) scrollToBottom();
   }, [chatsData]);
 
-  // scroll to latest
-  const scrolla = () => {
+  const scrollToBottom = () => {
     if (chatsData) dummy.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // load more messages
   const getMoreMessages = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLimitCount(limitCount + 5);
