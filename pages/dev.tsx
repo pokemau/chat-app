@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+// development component only
+
 function Dev() {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const strings = ["one", "two", "three"];

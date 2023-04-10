@@ -68,7 +68,6 @@ interface chatsProps {
 }
 
 const Chat: React.FC<chatsProps> = ({ chatsData }) => {
-  const [showMessageOption, setShowMessageOption] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
 
   const reversed = [...chatsData].reverse();
