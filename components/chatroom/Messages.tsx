@@ -14,6 +14,7 @@ import { SendMessageProps } from "./SendMessage";
 
 import { MouseEvent, useEffect, useState } from "react";
 import Image from "next/image";
+import MessageOptions from "../MessageOptions/MessageOptions";
 
 const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [chatsData, setChatsData] = useState<DocumentData[]>([]);
@@ -44,13 +45,8 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
 
   const getMoreMessages = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLimitCount(limitCount + 5);
+    setLimitCount((prevCount) => prevCount + 5);
   };
-
-  // userMessage
-  // userName
-  // userImg
-  // timeSent
 
   return (
     <div>
@@ -72,13 +68,18 @@ interface chatsProps {
 }
 
 const Chat: React.FC<chatsProps> = ({ chatsData }) => {
+  const [showMessageOption, setShowMessageOption] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
+
   const reversed = [...chatsData].reverse();
   return (
     <>
-      {reversed?.map((chat) => (
+      {reversed?.map((chat, index) => (
         <div
           key={chat.id}
-          className="relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#e0e0e0] dark:hover:bg-[#1B1D2A]">
+          className={`relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#e0e0e0] dark:hover:bg-[#1B1D2A]`}
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(-1)}>
           <Image
             className="z-0 absolute rounded-full left-2 top-1"
             src={chat.data().userImg}
@@ -99,6 +100,8 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
 
             <h1>{chat.data().userMessage}</h1>
           </div>
+
+          {hoveredIndex === index && <MessageOptions />}
         </div>
       ))}
     </>

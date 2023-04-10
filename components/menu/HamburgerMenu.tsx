@@ -1,6 +1,7 @@
 import { HiMenu } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 
+// components k
 import Logout from "./Logout";
 import Profile from "./Profile";
 

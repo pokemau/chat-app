@@ -36,6 +36,10 @@
   .inactive {
     @apply hover:cursor-not-allowed bg-[#343746] text-[#757272] hover:text-[#757272] hover:bg-[#343746];
   }
+
+  .message-option-btn {
+    @apply bg-orange-300 m-1 p-1 rounded w-[50%] text-center;
+  }
 }
 
 .loader {

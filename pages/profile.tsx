@@ -1,6 +1,6 @@
 // components
-import PageLoad from "../components/loading/PageLoad";
-import Login from "../components/menu/Login";
+import PageLoad from "../components/Loading/PageLoad";
+import Login from "../components/Menu/Login";
 
 // firebase imports
 import { auth } from "../firebase/client";

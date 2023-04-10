@@ -111,7 +111,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   };
 
   return (
-    <div className="flex flex-col m-auto justify-center px-2 md:w-[80%] md:px-10 h-[20%] border-t-[1px] border-[#a7a7a7]">
+    <div className="flex flex-col m-auto justify-center px-2 md:w-[70%] md:px-10 h-[20%] border-t-[1px] border-[#a7a7a7]">
       <div className="flex">
         <input
           value={currMessage}

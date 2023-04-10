@@ -1,11 +1,10 @@
-import HamburgerMenu from "../menu/HamburgerMenu";
-
-import Link from "next/link";
-
-// utils
-import { useTheme } from "next-themes";
 // react icons
 import { FiMoon, FiSun } from "react-icons/fi";
+// components
+import HamburgerMenu from "../Menu/HamburgerMenu";
+
+import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   // theme if darkmode or not
