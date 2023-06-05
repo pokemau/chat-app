@@ -71,6 +71,16 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
 
   const reversed = [...chatsData].reverse();
+  const displayDate = (dateObj: Date): string => {
+    const currDate = new Date();
+    const sentDate = dateObj.getDate();
+
+    if (currDate.getDate() === sentDate) {
+      return "Today";
+    } else if (currDate.getDate() - 1 === sentDate) return "Yesterday";
+
+    return dateObj.toLocaleDateString();
+  };
   return (
     <>
       {reversed?.map((chat, index) => (
@@ -92,7 +102,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
                 {chat.data().userName.split(" ")[0]}
               </h1>
               <p className="ml-2 text-[#575757] text-xs font-bold">
-                {chat.data().timeStamp?.toDate().toLocaleDateString()}
+                {displayDate(chat.data().timeStamp.toDate())}
               </p>
               <p className=" ml-2 text-[#575757] text-xs font-bold">
                 {chat.data().timeSent}
@@ -108,7 +118,6 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
     </>
   );
 };
-
 export default Messages;
 
 // <div
