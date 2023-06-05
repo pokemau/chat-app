@@ -73,13 +73,13 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
   const reversed = [...chatsData].reverse();
   const displayDate = (dateObj: Date): string => {
     const currDate = new Date();
-    const sentDate = dateObj.getDate();
+    const sentDate = dateObj?.getDate();
 
     if (currDate.getDate() === sentDate) {
       return "Today";
     } else if (currDate.getDate() - 1 === sentDate) return "Yesterday";
 
-    return dateObj.toLocaleDateString();
+    return dateObj?.toLocaleDateString();
   };
   return (
     <>
@@ -102,7 +102,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
                 {chat.data().userName.split(" ")[0]}
               </h1>
               <p className="ml-2 text-[#575757] text-xs font-bold">
-                {displayDate(chat.data().timeStamp.toDate())}
+                {displayDate(chat.data().timeStamp?.toDate())}
               </p>
               <p className=" ml-2 text-[#575757] text-xs font-bold">
                 {chat.data().timeSent}
