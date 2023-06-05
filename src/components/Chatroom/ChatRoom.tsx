@@ -1,10 +1,10 @@
 // components
+import useOnScreen from "../../Hooks/useOnScreen";
 import Messages from "./Messages";
 import SendMessage from "./SendMessage";
 
 // hooks
 import { useRef } from "react";
-import useOnScreen from "../Hooks/useOnScreen";
 
 const ChatRoom = () => {
   const dummy = useRef<HTMLDivElement>(null);

@@ -1,4 +1,3 @@
-// firebase imports
 import {
   DocumentData,
   collection,
@@ -9,12 +8,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase/client";
 
-// components
 import { SendMessageProps } from "./SendMessage";
+import MessageOptions from "../MessageOptions/MessageOptions";
 
 import { MouseEvent, useEffect, useState } from "react";
 import Image from "next/image";
-import MessageOptions from "../MessageOptions/MessageOptions";
 
 const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [chatsData, setChatsData] = useState<DocumentData[]>([]);
@@ -31,7 +29,9 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
       setChatsData(snapShot.docs.map((doc) => doc));
     });
 
-    return () => unsub();
+    return () => {
+      unsub();
+    };
   }, [limitCount]);
 
   // run when chatsData is increased
@@ -48,8 +48,16 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
     setLimitCount((prevCount) => prevCount + 5);
   };
 
+  const run = () => {
+    const data: Date = chatsData[0].data().timeStamp.toDate();
+    console.log(data.toLocaleDateString());
+    // console.log(data.toLocaleDateString());
+    // console.log(dString);
+  };
+
   return (
     <div>
+      <button onClick={() => run()}>CLICK</button>
       <button
         className="noselect underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>
@@ -76,7 +84,8 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
       {reversed?.map((chat, index) => (
         <div
           key={chat.id}
-          className={`relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#e0e0e0] dark:hover:bg-[#1B1D2A]`}
+          className={`relative px-2 mb-2 break-words min-h-[10%] hover:bg-[#e0e0e0]
+           dark:hover:bg-[#1B1D2A]`}
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(-1)}>
           <Image
@@ -92,6 +101,9 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
               <h1 className="font-bold">
                 {chat.data().userName.split(" ")[0]}
               </h1>
+              <p className="ml-2 text-[#575757] text-xs font-bold">
+                {chat.data().timeStamp.toDate().toLocaleDateString()}
+              </p>
               <p className=" ml-2 text-[#575757] text-xs font-bold">
                 {chat.data().timeSent}
               </p>

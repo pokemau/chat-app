@@ -7,7 +7,13 @@ import {
 } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/client";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  FieldValue,
+  Timestamp,
+} from "firebase/firestore";
 
 export interface SendMessageProps {
   dummy: RefObject<HTMLDivElement>;
@@ -15,6 +21,14 @@ export interface SendMessageProps {
 }
 
 const cdNum = 5;
+
+export type ChatType = {
+  userMessage: string;
+  timeStamp: any;
+  userName: string | null | undefined;
+  userImg: string | null | undefined;
+  timeSent: string | number;
+};
 
 const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   const [currMessage, setCurrMessage] = useState<string>("");
@@ -96,7 +110,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
   // function to write to db
   const addMessageToDb = async (
     userMessage: string,
-    timeStamp: any,
+    timeStamp: FieldValue,
     userName: string | null | undefined,
     userImg: string | null | undefined,
     timeSent: string | number
