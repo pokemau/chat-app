@@ -48,16 +48,8 @@ const Messages: React.FC<SendMessageProps> = ({ dummy, isVisible }) => {
     setLimitCount((prevCount) => prevCount + 5);
   };
 
-  const run = () => {
-    const data: Date = chatsData[0].data().timeStamp.toDate();
-    console.log(data.toLocaleDateString());
-    // console.log(data.toLocaleDateString());
-    // console.log(dString);
-  };
-
   return (
     <div>
-      <button onClick={() => run()}>CLICK</button>
       <button
         className="noselect underline mb-2 hover:text-[#165ac2]"
         onClick={getMoreMessages}>
