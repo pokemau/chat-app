@@ -92,7 +92,7 @@ const Chat: React.FC<chatsProps> = ({ chatsData }) => {
                 {chat.data().userName.split(" ")[0]}
               </h1>
               <p className="ml-2 text-[#575757] text-xs font-bold">
-                {chat.data().timeStamp.toDate().toLocaleDateString()}
+                {chat.data().timeStamp?.toDate().toLocaleDateString()}
               </p>
               <p className=" ml-2 text-[#575757] text-xs font-bold">
                 {chat.data().timeSent}
