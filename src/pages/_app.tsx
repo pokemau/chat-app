@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <title>Yahallo | Chat</title>
         </Head>
 
-        {user ? <Navbar /> : null}
+        <Navbar />
         <Component {...pageProps} />
       </ThemeProvider>
     </>

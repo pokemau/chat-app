@@ -7,7 +7,7 @@ const Login = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   return (
-    <div className="flex items-center flex-col h-screen mt-2">
+    <div className="flex items-center flex-col">
       <h1 className="font-bold text-3xl text-center">Yahallo</h1>
       <Image
         className="mt-2"
