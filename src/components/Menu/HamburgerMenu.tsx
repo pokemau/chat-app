@@ -42,9 +42,8 @@ const HamburgerMenu = () => {
           isOpen ? styles.active : styles.inactive
         }`}>
         <div className="text-center">
-          <Logout />
-
           <Profile />
+          <Logout />
         </div>
       </div>
     </div>
